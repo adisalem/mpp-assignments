@@ -1,22 +1,29 @@
-package lesson03.labs.prob3;
+package lab3.prob3;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Admin class for managing properties and performing calculations.
+ * Refactored to use polymorphism instead of instanceof checks.
+ */
 public class Admin {
-	public static double computeTotalRent(Object[] properties) {
+
+	public static double computeTotalRent(Property[] properties) {
 		double totalRent = 0;
-		for (Object o : properties) {
-			if (o instanceof House) {
-				House h = (House) o;
-				totalRent += h.computeRent();
-			}
-			else if (o instanceof Condo) {
-				Condo h = (Condo) o;
-				totalRent += h.computeRent();
-			}
-			else if (o instanceof Trailer) {
-				Trailer h = (Trailer) o;
-				totalRent += h.computeRent();
-			}	
+		for (Property property : properties) {
+			totalRent += property.computeRent();
 		}
 		return totalRent;
+	}
+
+	public static double computeTotalRent(Object[] objects) {
+		List<Property> properties = new ArrayList<>();
+		for (Object obj : objects) {
+			if (obj instanceof Property) {
+				properties.add((Property) obj);
+			}
+		}
+		return computeTotalRent(properties.toArray(new Property[0]));
 	}
 }

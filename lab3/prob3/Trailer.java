@@ -1,17 +1,16 @@
-package lesson03.labs.prob3;
+package lab3.prob3;
 
+public class Trailer extends Property {
+	private static final double RENT = 500.0;
 
-public class Trailer {
-	private static final double RENT = 500;
-	private Address address;
-	public Address getAddress() {
-		return address;
-	}
 	public Trailer(Address address) {
-		this.address = address;
+		super(address);
+		computeRent();
 	}
-	public double computeRent(){
-		return RENT;
+
+	@Override
+	public double computeRent() {
+		this.rent = RENT;
+		return this.rent;
 	}
-	
 }

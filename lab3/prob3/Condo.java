@@ -1,19 +1,26 @@
-package lesson03.labs.prob3;
+package lab3.prob3;
 
-
-
-public class Condo {
-	private Address address;
+public class Condo extends Property {
 	private int numberOfFloors;
-	public Address getAddress() {
-		return address;
-	}
+
 	public Condo(Address address, int numberOfFloors) {
-		this.address = address;
+		super(address);
 		this.numberOfFloors = numberOfFloors;
+		computeRent();
 	}
 
-	public double computeRent(){
-		return 500 * numberOfFloors;
+	public int getNumberOfFloors() {
+		return numberOfFloors;
+	}
+
+	public void setNumberOfFloors(int numberOfFloors) {
+		this.numberOfFloors = numberOfFloors;
+		computeRent();
+	}
+
+	@Override
+	public double computeRent() {
+		this.rent = 400 * numberOfFloors;
+		return this.rent;
 	}
 }

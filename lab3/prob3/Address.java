@@ -1,19 +1,18 @@
-package lesson03.labs.prob3;
-
+package lab3.prob3;
 
 public class Address {
 	private String street;
 	private String city;
 	private String state;
 	private String zip;
-	
+
 	public Address(String str, String c, String state, String zip) {
-		street=str;
-		city=c;
-		this.state=state;
-		this.zip=zip;
+		street = str;
+		city = c;
+		this.state = state;
+		this.zip = zip;
 	}
-	
+
 	public String getStreet() {
 		return street;
 	}
@@ -42,8 +41,8 @@ public class Address {
 		return zip;
 	}
 
-	public void setZip(String zip) {
-		this.zip = zip;
+	@Override
+	public String toString() {
+		return street + ", " + city + ", " + state + " " + zip;
 	}
-	
 }
