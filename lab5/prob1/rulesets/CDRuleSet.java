@@ -1,8 +1,8 @@
-package lesson5.labs.prob1.rulesets;
+package lab5.prob1.rulesets;
 
 import java.awt.Component;
 
-import lesson5.labsolns.prob1.gui.CDWindow;
+import lab5.prob1.gui.CDWindow;
 
 /**
  * Rules:
@@ -12,11 +12,46 @@ import lesson5.labsolns.prob1.gui.CDWindow;
  */
 
 public class CDRuleSet implements RuleSet {
+	private CDWindow cdWin;
 
 	@Override
 	public void applyRules(Component ob) throws RuleException {
-		// TODO Auto-generated method stub
-		
+		cdWin = (CDWindow) ob;
+		nonemptyRule();
+		priceFormatRule();
+		priceRangeRule();
 	}
 	
+	private void nonemptyRule() throws RuleException {
+		if (cdWin.getArtistValue().trim().isEmpty() ||
+			cdWin.getTitleValue().trim().isEmpty() ||
+			cdWin.getPriceValue().trim().isEmpty()) {
+			throw new RuleException("All fields must be non-empty!");
+		}
+	}
+	
+	private void priceFormatRule() throws RuleException {
+		String price = cdWin.getPriceValue().trim();
+		try {
+			Double.parseDouble(price);
+			// Check if it has exactly 2 decimal places
+			if (!price.matches("\\d+\\.\\d{2}")) {
+				throw new RuleException("Price must have exactly two decimal places (e.g., 1.23)");
+			}
+		} catch (NumberFormatException e) {
+			throw new RuleException("Price must be a valid number");
+		}
+	}
+	
+	private void priceRangeRule() throws RuleException {
+		String price = cdWin.getPriceValue().trim();
+		try {
+			double priceValue = Double.parseDouble(price);
+			if (priceValue <= 0.49) {
+				throw new RuleException("Price must be greater than $0.49");
+			}
+		} catch (NumberFormatException e) {
+			throw new RuleException("Price must be a valid number");
+		}
+	}
 }

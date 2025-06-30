@@ -3,7 +3,8 @@ package lab5.prob4;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Customer {
+// Outside of lab5.prob4 package, Customer is immutable
+final public class Customer {
 	private String name;
 	private List<Order> orders;
 	

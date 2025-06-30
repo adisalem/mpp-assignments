@@ -1,4 +1,4 @@
-package lesson5.labs.prob1.gui;
+package lab5.prob1.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

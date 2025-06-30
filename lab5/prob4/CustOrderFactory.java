@@ -2,10 +2,11 @@ package lab5.prob4;
 
 import java.time.LocalDate;
 
+/** Factory for creating Customer, Order, and Item instances with controlled relationships */
 final public class CustOrderFactory {
 	private CustOrderFactory(){}
 	
-	
+	// Factory method to create Customer
 	public static Customer createCustomer(String name) {
 		return new Customer(name);
 	}

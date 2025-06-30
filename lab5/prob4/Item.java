@@ -1,6 +1,7 @@
 package lab5.prob4;
 
-public class Item {
+// Outside of lab5.prob4 package, Item is immutable
+final public class Item {
 	String name;
 	
 	// Package-private constructor - only accessible within the same package

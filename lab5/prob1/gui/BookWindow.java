@@ -1,4 +1,4 @@
-package lesson5.labs.prob1.gui;
+package lab5.prob1.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -17,9 +17,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import lesson5.labsolns.prob1.rulesets.RuleException;
-import lesson5.labsolns.prob1.rulesets.RuleSet;
-import lesson5.labsolns.prob1.rulesets.RuleSetFactory;
+import lab5.prob1.rulesets.RuleException;
+import lab5.prob1.rulesets.RuleSet;
+import lab5.prob1.rulesets.RuleSetFactory;
 
 public class BookWindow extends JFrame {
 	private JPanel topPanel;
@@ -119,7 +119,17 @@ public class BookWindow extends JFrame {
 	}
 	class ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent evt){
-			JOptionPane.showMessageDialog(BookWindow.this, "Still need to check book rules!");
+			try {
+				RuleSet rules = RuleSetFactory.getRuleSet(BookWindow.this);
+				rules.applyRules(BookWindow.this);
+				JOptionPane.showMessageDialog(BookWindow.this, 
+					"Book information is valid!\nISBN: " + getIsbnValue() + 
+					"\nTitle: " + getTitleValue() + 
+					"\nPrice: $" + getPriceValue());
+				clearFields();
+			} catch (RuleException e) {
+				JOptionPane.showMessageDialog(BookWindow.this, e.getMessage());
+			}
 		}
 	}
 	class BackListener implements ActionListener {

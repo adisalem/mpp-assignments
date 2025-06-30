@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class Order {
+// Outside of lab5.prob4 package, Order is immutable  
+final public class Order {
 	private LocalDate orderDate;
 	private List<Item> items;
 	

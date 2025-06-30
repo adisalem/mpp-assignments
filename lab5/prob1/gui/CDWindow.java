@@ -1,4 +1,4 @@
-package lesson5.labs.prob1.gui;
+package lab5.prob1.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -17,9 +17,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import lesson5.labsolns.prob1.rulesets.RuleException;
-import lesson5.labsolns.prob1.rulesets.RuleSet;
-import lesson5.labsolns.prob1.rulesets.RuleSetFactory;
+import lab5.prob1.rulesets.RuleException;
+import lab5.prob1.rulesets.RuleSet;
+import lab5.prob1.rulesets.RuleSetFactory;
 
 public class CDWindow extends JFrame {
 	private JPanel topPanel;
@@ -118,7 +118,17 @@ public class CDWindow extends JFrame {
 	}
 	class ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent evt){
-			JOptionPane.showMessageDialog(CDWindow.this, "Still need to check CD rules!");
+			try {
+				RuleSet rules = RuleSetFactory.getRuleSet(CDWindow.this);
+				rules.applyRules(CDWindow.this);
+				JOptionPane.showMessageDialog(CDWindow.this, 
+					"CD information is valid!\nArtist: " + getArtistValue() + 
+					"\nTitle: " + getTitleValue() + 
+					"\nPrice: $" + getPriceValue());
+				clearFields();
+			} catch (RuleException e) {
+				JOptionPane.showMessageDialog(CDWindow.this, e.getMessage());
+			}
 		}
 	}
 	class BackListener implements ActionListener {
