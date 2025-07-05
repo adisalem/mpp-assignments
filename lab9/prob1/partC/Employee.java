@@ -1,4 +1,4 @@
-package lesson7.labs.prob1.partC;
+package lab9.prob1.partC;
 
 public class Employee {
 	private String name;
@@ -33,5 +33,8 @@ public class Employee {
 		return emp.name.equals(name) && emp.salary == salary;
 	}
 	
-	
+	// @Override
+	// public int hashCode() {
+	// 	return java.util.Objects.hash(name, salary);
+	// }
 }
